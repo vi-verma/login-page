@@ -4,11 +4,13 @@ import Login from './UI/Login';
 import Home from "./UI/Home";
 import './App.css';
 
+import {TOKEN_KEY} from './constants';
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    if(localStorage.Loginid == true){
+    if(localStorage.getItem(TOKEN_KEY)){
       setIsLoggedIn(true)
     };
   }, [])

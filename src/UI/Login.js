@@ -2,10 +2,11 @@ import { useState, useReducer } from "react";
 import Card from "./Card";
 import Button from "../Component/Button";
 import classes from './Login.module.css';
+import { TOKEN_KEY } from "../constants";
 
 function Login(props){
     const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState({});
+    const [userPassword, setUserPassword] = useState('');
     const [emailIsValid, setEmilIsValid] = useState(true);
     const [passwordIsValid, setPasswordIsValid] = useState(true);
  
@@ -14,15 +15,20 @@ function Login(props){
             setEmilIsValid(false);
             console.log("working")
             return;
-        };
+        }else{
+            setEmilIsValid(true);
+        }
 
         if(userPassword.length < 6){
             setPasswordIsValid(false);
+
             return;
-        };
-        
+        }else{
+            setPasswordIsValid(true)
+        }
+        console.log("pass", userPassword)
         props.setIsLoggedIn(true)
-        localStorage.setItem("Loginid","1");
+        localStorage.setItem(TOKEN_KEY,"1");
 
     };
 
