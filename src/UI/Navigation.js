@@ -15,9 +15,13 @@ function Navigation (props){
                     <Button className="btn btn-outline-success" type="button">
                         Help
                     </Button>
-                    <Button onClick={LogoutHandeler} className="btn btn-outline-danger" type="button">
-                        logout
-                    </Button>
+                    {
+                      props.isLoggedIn &&  
+                     <Button onClick={LogoutHandeler} className="btn btn-outline-danger" type="button">
+                     logout
+                    </Button>       
+                    }
+                    
                 </form>
             </nav>
         </div>
