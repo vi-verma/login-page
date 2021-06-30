@@ -1,15 +1,21 @@
 import Button from "../Component/Button";
+// import classes from "./Navigation.module.css";
 
-function Navigation (){
+function Navigation (props){
+
+    const LogoutHandeler = () => {
+        props.setIsLoggedIn(false);
+        localStorage.removeItem("Loginid")
+    };
 
     return(
         <div className="container-fluid">
             <nav className="navbar navbar-dark bg-dark">
                 <form className="form-inline">
-                    <Button className={"btn btn-outline-success"}>
+                    <Button className="btn btn-outline-success" type="button">
                         Help
                     </Button>
-                    <Button className={"btn btn-outline-danger"}>
+                    <Button onClick={LogoutHandeler} className="btn btn-outline-danger" type="button">
                         logout
                     </Button>
                 </form>

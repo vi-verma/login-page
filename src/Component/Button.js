@@ -3,11 +3,9 @@
 function Button(props){
 
     return(
-        <div >
-            <button className={props.classname || " "} type={props.type || "button"}>
-                {props.children}
-            </button>
-        </div>
+        <button onClick={props.onClick} className={props.className || "btn btn-primary"} type={props.type || "button"}>
+            {props.children}
+        </button>
     );
 };
 

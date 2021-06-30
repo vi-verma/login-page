@@ -1,10 +1,11 @@
 import Card from "./Card";
+import classes from "./Home.module.css";
 
 function Home(){
 
     return(
         <Card>
-            <p className=''>You are logged in</p>
+            <p className={classes.home}>You are logged in</p>
         </Card>
     );
 };
