@@ -5,7 +5,8 @@ function Navigation (props){
 
     const LogoutHandeler = () => {
         props.setIsLoggedIn(false);
-        localStorage.removeItem("Loginid")
+        localStorage.removeItem("token")
+        // localStorage.removeItem("Loginid")
     };
 
     return(

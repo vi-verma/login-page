@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import {useState} from "react";
 import Card from "./Card";
 import Button from "../Component/Button";
 import classes from './Login.module.css';
@@ -11,9 +11,35 @@ function Login(props){
     const [passwordIsValid, setPasswordIsValid] = useState(true);
  
     const LoginHandeler = () => {
-        if(userEmail.length == 0 || userEmail.includes("@") == false ){
+
+        fetch("http://localhost:3000/auth/login", {  
+            method: "POST",
+            body: JSON.stringify({userId:userEmail, password:userPassword}),
+            headers: {
+                'Content-Type': 'application/json',
+                // 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhQGdtYWlsLmNvbSIsImlhdCI6MTYyNTQ4NDMwMiwiZXhwIjoxNjI1NDg1MjAyfQ.oJTx2R_ZwAc0sKew0TasuYba-HQ4O_7G8CLwLsRKZQ0'
+            },
+            mode: "cors"
+        }).then((response) => {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data.token)
+            if(data.token){
+                localStorage.setItem("token", data.token)
+                props.setIsLoggedIn(true)
+                return;
+            }else{
+                alert("invalid email or password")  
+            }
+        })
+        .catch((err) => {
+            alert(err)
+            console.log(err)
+        })
+
+        if(userEmail.length === undefined || userEmail.includes("@") === false ){
             setEmilIsValid(false);
-            console.log("working")
             return;
         }else{
             setEmilIsValid(true);
@@ -26,11 +52,11 @@ function Login(props){
         }else{
             setPasswordIsValid(true)
         }
-        console.log("pass", userPassword)
-        props.setIsLoggedIn(true)
-        localStorage.setItem(TOKEN_KEY,"1");
+        // console.log("pass", userPassword)
+        
+        // localStorage.setItem(TOKEN_KEY,"1");
 
-    };
+    };  
 
     const emailHandeler = (event) => {
         setUserEmail(event.target.value);
@@ -54,8 +80,7 @@ function Login(props){
                     <Button onClick={LoginHandeler} type="button" >Log In</Button>
                 </div>
             </div>
-        </Card>
+        </Card>   
     );
 };
-
 export default Login;
