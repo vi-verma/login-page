@@ -3,8 +3,7 @@ import Navigation from './UI/Navigation';
 import Login from './UI/Login';
 import Home from "./UI/Home";
 import './App.css';
-
-// import {TOKEN_KEY} from './constants';
+import {TOKEN_KEY} from './constants';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,26 +13,25 @@ function App() {
     fetch('http://localhost:3000/users/me', {
       method: "GET",
       headers: {
-        'application-type': 'application/json',
+        // 'application-type': 'application/json',
         "token": localStorage.token,
       },
       mode: "cors"
     }).then((response) => {
       return response.json();
-    }).then(data => {
-      console.log(data)
-      if(data){
+    }).then(Data => {
+      // console.log("me data", Data.error)
+      if(Data.error !== "Token expired"){
         setIsLoggedIn(true);
       }else{
         setIsLoggedIn(false);
-        localStorage.removeItem("token");
+        localStorage.removeItem(TOKEN_KEY);
       }
-    }).catch((error) => {
-      console.log(error);
+    
+    }).catch((err) =>{
+      alert(err)
     })
   },[]);
-  //   if (localStorage.token === )
-  // },[])
 
   // useEffect(() => {
   //   if(localStorage.getItem(TOKEN_KEY)){

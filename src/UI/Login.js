@@ -24,18 +24,16 @@ function Login(props){
             return response.json()
         })
         .then(data => {
-            console.log(data.token)
+            // console.log(data.token)
             if(data.token){
-                localStorage.setItem("token", data.token)
+                localStorage.setItem(TOKEN_KEY, data.token)
                 props.setIsLoggedIn(true)
                 return;
             }else{
                 alert("invalid email or password")  
             }
-        })
-        .catch((err) => {
-            alert(err)
-            console.log(err)
+        }).catch((error) => {
+            alert(error)
         })
 
         if(userEmail.length === undefined || userEmail.includes("@") === false ){
