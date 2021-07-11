@@ -72,7 +72,7 @@ function Login(props){
                 </div>
                 <div className={classes.password_cl}>
                     <label>Password:</label>
-                    <input onChange={passwordHandeler} type="text" className="form-control" style={{borderColor:passwordIsValid ? "grey" : "red"}}></input>
+                    <input onChange={passwordHandeler} type="password" className="form-control" style={{borderColor:passwordIsValid ? "grey" : "red"}}></input>
                 </div>
                 <div>
                     <Button onClick={LoginHandeler} type="button" >Log In</Button>
