@@ -3,6 +3,7 @@ import Card from "./Card";
 import Button from "../Component/Button";
 import classes from './Login.module.css';
 import { TOKEN_KEY } from "../constants";
+import SignUp from "./signup";
 
 function Login(props){
     const [userEmail, setUserEmail] = useState('');
@@ -62,6 +63,9 @@ function Login(props){
     const passwordHandeler = (event) => {
         setUserPassword(event.target.value);
     };
+    function onSignup(){
+        props.setIsSignUp(true)
+    };
 
     return(
         <Card>
@@ -77,6 +81,10 @@ function Login(props){
                 <div>
                     <Button onClick={LoginHandeler} type="button" >Log In</Button>
                 </div>
+                <div>
+                    <Button onClick={onSignup}>Sign Up</Button>
+                </div>
+
             </div>
         </Card>   
     );

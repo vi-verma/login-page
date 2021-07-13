@@ -8,6 +8,7 @@ import SignUp from "./UI/signup";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const UserFetch = async () => {
     try {
@@ -70,8 +71,8 @@ function App() {
     <div className="App">
       <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <div className="container">
-        {isLoggedIn ? <Home setIsLoggedIn={setIsLoggedIn}/> : <Login setIsLoggedIn={setIsLoggedIn} />}
-        <SignUp/>
+        {isLoggedIn ? <Home setIsLoggedIn={setIsLoggedIn}/> : isSignUp ?  <SignUp/>  : <Login setIsLoggedIn={setIsLoggedIn} setIsSignUp={setIsSignUp}/>}
+        
       </div>
     </div>
   );
